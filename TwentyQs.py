@@ -51,6 +51,7 @@ while True:  # loop to keep the game running while the user hasn't quit
             decisionTree[len(questions.keys())] = [
                 prev, len(questions.keys()) + 1]
 
+        # includes proceeding question into decisionTree
         questions[len(questions.keys()) + 1] = 'Is it a(n) {}'.format(
             correct_thing)
         decisionTree[len(questions.keys())] = ['win', 0]

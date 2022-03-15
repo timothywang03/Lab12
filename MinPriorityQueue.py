@@ -1,15 +1,22 @@
 # File: MinPriorityQueue.py
 
+from random import randint
+
+
 class MinPriorityQueue:
-    def __init__(self):
-        self.arr = list(None for x in range(10))
+    def __init__(self, capacity):
+        self.arr = list(None for x in range(capacity))
         self.size = 0
+        self.capacity = capacity
 
     def getSize(self):
         return self.size
 
-    def getMin(self):
-        return self.arr[0]
+    def getArr(self):
+        return self.arr
+
+    def getCapacity(self):
+        return self.capacity
 
     def minHeapify(self, i):
         left = i * 2 + 1
@@ -60,7 +67,7 @@ class MinPriorityQueue:
             i = i // 2
 
 
-queue = MinPriorityQueue()
+queue = MinPriorityQueue(10)
 queue.insert(4)
 queue.insert(2)
 queue.insert(1)
@@ -69,3 +76,17 @@ queue.insert(3)
 queue.extractMin()
 queue.extractMin()
 print(queue.arr)
+
+
+def k_values():
+    """Given a random list of 1000 integers, read them one by one and save the largest values in the min_queue"""
+    queue = MinPriorityQueue(10)    # setting 10 as the k value
+    numbers = list(randint(0, 1000) for x in range(1000))
+    for x in numbers:
+        if queue.getSize() == queue.getCapacity():
+            queue.extractMin()
+        queue.insert(x)
+    print(queue.arr)
+
+
+k_values()

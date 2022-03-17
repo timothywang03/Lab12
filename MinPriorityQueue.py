@@ -1,4 +1,4 @@
-# File: MinPriorityQueue.py
+# File: MinPriorityQueue.py - Timothy Wang
 
 from random import randint
 

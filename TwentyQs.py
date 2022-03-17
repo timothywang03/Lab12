@@ -14,6 +14,7 @@ while True:  # loop to keep the game running while the user hasn't quit
     two_prev = None  # keeps count of current win state,  previous question, and where the new question should be added if computer is wrong
     prev = None
     cur = 1
+    iterations = 0
     while cur != 'win' and cur != 0:    # main game; traverses down the tree while there are still more branches to go
         question = input(questions[cur])
         if question == 'y':
@@ -24,6 +25,7 @@ while True:  # loop to keep the game running while the user hasn't quit
             two_prev = prev
             prev = cur
             cur = decisionTree[cur][1]
+        iterations += 1
 
     if cur == 'win':    # endgame condition in which the cpu guesses the thing correctly
         print('Yay! I guessed it')
@@ -57,5 +59,7 @@ while True:  # loop to keep the game running while the user hasn't quit
         decisionTree[len(questions.keys())] = ['win', 0]
 
     restart_condition = input('\nPlay again? ')
-    if restart_condition == 'n':
+    if restart_condition == 'n' or iterations == 20:
+        if iterations == 20:    # break condition if more than 20 layers are traversed
+            print("I couldn't get it in 20 questions!")
         break
